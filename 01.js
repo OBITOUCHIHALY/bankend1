@@ -405,7 +405,7 @@ function generateKHQRData(merchantName, transactionAmount) {
   const merchantCity = "6010PHNOM PENH";
   const transactionCurrency = "5303840";
   const formattedTransactionAmount = `5404${parseFloat(
-    transactionAmount
+    transactionAmount,
   ).toFixed(2)}`;
   const timestamp = generateCustomTimestamp();
 
@@ -441,7 +441,7 @@ app.post("/generate-qr", (req, res) => {
   } else {
     return res.status(400).json({
       error: `Either provide a valid ID (${Object.keys(idToAmountMap).join(
-        ", "
+        ", ",
       )}) or a valid positive number for 'amount'.`,
     });
   }
@@ -476,7 +476,7 @@ app.post("/check-transaction", async (req, res) => {
   if (!id || !Object.keys(idToAmountMap).includes(id)) {
     return res.status(400).json({
       error: `Valid ID is required. Allowed values: ${Object.keys(
-        idToAmountMap
+        idToAmountMap,
       ).join(", ")}`,
     });
   }
@@ -498,7 +498,7 @@ app.post("/check-transaction", async (req, res) => {
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append(
     "Authorization",
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiMDU2N2I3NzQ5YWU1NGMzOSJ9LCJpYXQiOjE3NDI1MjQ0MDQsImV4cCI6MTc1MDMwMDQwNH0.AYuGOodtSrSdYxSDp4pDU-_r0rtx4DBttceGVeMLBQA"
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiMDU2N2I3NzQ5YWU1NGMzOSJ9LCJpYXQiOjE3NDI1MjQ0MDQsImV4cCI6MTc1MDMwMDQwNH0.AYuGOodtSrSdYxSDp4pDU-_r0rtx4DBttceGVeMLBQA",
   );
 
   const raw = JSON.stringify({ md5: md5Hash });
@@ -513,7 +513,7 @@ app.post("/check-transaction", async (req, res) => {
   try {
     const response = await fetchModule.default(
       "https://api-bakong.nbc.gov.kh/v1/check_transaction_by_md5",
-      requestOptions
+      requestOptions,
     );
 
     let result;
@@ -557,3 +557,4 @@ app.get("/get-latest-qr", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
+//lyouy
