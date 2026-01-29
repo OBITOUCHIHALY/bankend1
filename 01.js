@@ -496,7 +496,10 @@ app.post("/check-transaction", async (req, res) => {
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", "");
+  myHeaders.append(
+    "Authorization",
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiMDU2N2I3NzQ5YWU1NGMzOSJ9LCJpYXQiOjE3Njk2MTIwMTUsImV4cCI6MTc3NzM4ODAxNX0.R7vFtS-poF9jcdPUjzsjDTekGQ3yUewtTsp5x2xFgaY",
+  );
 
   const raw = JSON.stringify({ md5: md5Hash });
 
